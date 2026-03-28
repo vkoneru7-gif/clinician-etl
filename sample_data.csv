@@ -1,0 +1,11 @@
+id,clinician_name,specialty,license_number,license_state,license_expiry,npi,email,phone,status
+1,dr. john smith,Family Medicine,MD123456,ca,2025-03-15,1234567890,john.smith@clinic.com,555-123-4567,active
+2,SARAH JOHNSON MD,cardiology,,TX,03/2026,9876543210,SARAH.J@HOSPITAL.ORG,(555) 987-6543,Active
+3,Dr. Michael Chen,orthopedic surgery,OS789012,New York,2024-12-31,1122334455,m.chen@practice.net,5551234567,INACTIVE
+4,emily rodriguez,Pediatrics,PE456789,FL,2026-06-30,,emily.r@kids.com,555.456.7890,active
+5,DR JAMES WILSON,internal medicine,IM321654,il,expired,3344556677,jwilson@med.org,+1-555-321-0987,Active
+6,Lisa Park M.D.,Dermatology,DE654321,WA,2025-11-30,5566778899,lisa.park@derm.com,555 654 3210,active
+7,robert taylor,,,OH,2025-08-15,7788990011,r.taylor@clinic.com,555-789-0123,pending
+8,Dr. Amanda White,Psychiatry,PS112233,MA,2026-01-15,9900112233,a.white@psych.net,"(555) 111-2233",ACTIVE
+9,carlos mendez md,Neurology,NE445566,AZ,2025-09-30,2233445566,c.mendez@neuro.com,5552345678,active
+10,DR. PATRICIA LEE,OB/GYN,OB778899,GA,2026-04-30,4455667788,patricia.lee@womens.org,555-876-5432,Active
