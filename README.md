@@ -1,5 +1,4 @@
-# clinician-etl
-AI-powered clinician data cleaning ETL pipeline
+
 # 🏥 Clinician ETL — AI-Powered Healthcare Data Cleaning
 
 > A lightweight prototype that solves a real problem in healthcare operations: messy clinician data.
