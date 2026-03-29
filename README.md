@@ -1,4 +1,3 @@
-
 # 🏥 Clinician ETL — AI-Powered Healthcare Data Cleaning
 
 > A lightweight prototype that solves a real problem in healthcare operations: messy clinician data.
@@ -48,6 +47,10 @@ AI assistance (Google Gemini) handles ambiguous fields that rules alone can't re
 <!-- Replace the placeholder paths below with your actual screenshot filenames after uploading to GitHub -->
 
 ### Dashboard Overview
+<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/be022a36-104a-4917-aa93-11d6990bcc15" />
+
+
+
 ![Dashboard Overview](screenshots/dashboard.png)
 
 ### Data Quality Summary
