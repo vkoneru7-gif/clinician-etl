@@ -47,19 +47,14 @@ AI assistance (Google Gemini) handles ambiguous fields that rules alone can't re
 <!-- Replace the placeholder paths below with your actual screenshot filenames after uploading to GitHub -->
 
 ### Dashboard Overview
-<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/be022a36-104a-4917-aa93-11d6990bcc15" />
-
-
-
-
+![Dashboard Overview](<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/500d6498-dcd4-4d7a-b958-b22014e141aa" />
+)
 
 ### Data Quality Summary
-<img width="975" height="529" alt="image" src="https://github.com/user-attachments/assets/1407dd56-0eaf-492d-b983-5117045934a5" />
-
+![Data Quality Summary](screenshots/quality_summary.png)
 
 ### Issue Details Table
-<img width="975" height="533" alt="image" src="https://github.com/user-attachments/assets/c9624f88-42f5-4492-b05a-d857a456f1f2" />
-
+![Issue Details](screenshots/issue_details.png)
 
 ---
 
@@ -69,7 +64,7 @@ AI assistance (Google Gemini) handles ambiguous fields that rules alone can't re
 - **Data Processing** — [Pandas](https://pandas.pydata.org)
 - **AI Cleaning** — [Google Gemini API](https://ai.google.dev) via `google-generativeai`
 - **Excel Export** — [openpyxl](https://openpyxl.readthedocs.io)
-- **Deployment** — [Streamlit Cloud](https://streamlit.io/cloud)
+- **Deployment** — [Streamlit Cloud](https://streamlit.io/cloud) — deployed in under 5 minutes with zero-config secrets management via `st.secrets`
 
 ---
 
@@ -145,4 +140,4 @@ Running the pipeline on the included `sample_data.csv` (10 records) produces:
 
 ---
 
-*This project is a prototype demonstrating applied AI in healthcare data operations. Not intended for production clinical use.*
+*This project demonstrates HIPAA-aware data handling patterns — including PII field isolation, audit-ready issue logging, and secrets management via environment variables. Not intended for production clinical use without additional compliance review.*
