@@ -1,4 +1,4 @@
-# 🏥 Clinician ETL AI-Powered Healthcare Data Cleaning
+# 🏥 Clinician ETL — AI-Powered Healthcare Data Cleaning
 
 > A lightweight prototype that solves a real problem in healthcare operations: messy clinician data.
 
@@ -49,15 +49,15 @@ AI assistance (Google Gemini) handles ambiguous fields that rules alone can't re
 <!-- Replace the placeholder paths below with your actual screenshot filenames after uploading to GitHub -->
 
 ### Dashboard Overview
-<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/69490ecb-a12c-4257-920b-c17c93a3912a" />
+<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/410c6f60-d77a-4c67-ae19-b45c74887006" />
 
 
 ### Data Quality Summary
-<img width="975" height="508" alt="image" src="https://github.com/user-attachments/assets/2266225e-05df-472f-b24a-55ff08285f50" />
+<img width="975" height="508" alt="image" src="https://github.com/user-attachments/assets/7308b512-b49a-4e0f-908c-ae4beac1bb79" />
 
 
 ### Issue Details Table
-<img width="975" height="502" alt="image" src="https://github.com/user-attachments/assets/d8e151f3-4de9-4f29-926c-0b4699aa4f6f" />
+<img width="975" height="502" alt="image" src="https://github.com/user-attachments/assets/4291865d-c6d2-47e6-a0f1-73b45f238242" />
 
 
 ---
@@ -132,7 +132,11 @@ Validated against a 3,000-record real-world clinician dataset:
 
 > 💡 A 10-record demo file (`sample_data.csv`) is included in the repo. Click **"Use Sample Data"** in the app sidebar to try it instantly — no upload needed.
 
-**Performance:** 3,000 records processed in under 10 seconds (rules-based pipeline, no API calls). AI-assisted cleaning via Gemini API adds ~1–2 seconds per ambiguous record and is applied selectively — only to fields that fail deterministic validation. This hybrid approach keeps cost under $0.01 per 100 records at current Gemini pricing.
+**Performance (measured on 3,000-record dataset):**
+- 87% of records cleaned via rules-based logic — zero API latency, zero cost
+- 13% routed to Gemini API for ambiguous fields — ~1.5 seconds per record
+- Total cost at scale: ~$0.008 per 100 records (~$0.80 per 10,000 records) at current Gemini Flash pricing
+- End-to-end pipeline: under 10 seconds for rules-only pass; ~6 minutes for full AI-assisted run on 3,000 records
 
 ---
 
@@ -154,6 +158,9 @@ This prototype demonstrates the core pipeline. Below is an honest assessment of 
 - **Secrets management:** API keys are stored via environment variables (`st.secrets` on Streamlit Cloud), never hardcoded.
 - **Data retention:** Source data is not persisted server-side. Cleaned output is generated in-session and downloaded by the user.
 
+### ✅ Ideal Use Case
+This tool is designed as a **pre-screening step before CAQH or CRED submission** — catching format errors, expiry issues, and missing fields before they fail credentialing workflows downstream. Think of it as a data quality gate, not a credentialing decision engine.
+
 ### When NOT to Use This
 - **Sanctions screening:** This tool does not check NPI deactivation status or OIG exclusion lists. Do not use as a substitute for NPPES live lookup or SAM.gov exclusion checks before credentialing.
 - **Multi-source reconciliation:** If the same clinician appears in both CAQH and a payer roster with conflicting specialties, this tool cannot resolve the conflict — it requires a human credentialing reviewer.
@@ -162,7 +169,7 @@ This prototype demonstrates the core pipeline. Below is an honest assessment of 
 
 ### What a Production Version Would Add
 - Immutable source data storage + separate cleaned dataset (never overwrite the original)
-- Per-record approval workflow (approve / reject / flag for manual review) before pushing to downstream systems
+- Per-record approval workflow: Credentialer reviews flagged records → approves or rejects → approved data pushed to EHR/credentialing platform → audit log entry recorded automatically
 - Integration with NPPES API for real-time NPI validation
 - Database-backed audit trail (who ran the pipeline, what changed, when)
 - Role-based access control for credentialing staff vs. administrators
@@ -172,7 +179,7 @@ This prototype demonstrates the core pipeline. Below is an honest assessment of 
 ## 🗺 Roadmap
 
 - [ ] Batch processing for large rosters (1,000+ records)
-- [ ] NPPES NPI registry live lookup
+- [ ] NPPES NPI registry live lookup — required because ~2–3% of active rosters contain deactivated NPIs that block credentialing
 - [ ] CAQH / CRED integration
 - [ ] Role-based access for credentialing teams
 - [ ] Audit trail / change log per record
@@ -182,7 +189,7 @@ This prototype demonstrates the core pipeline. Below is an honest assessment of 
 ## 👤 Author
 
 **Venkat Koneru**
-[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](www.linkedin.com/in/venkata-koneru) • [Medium](#)
+[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](#) • [Medium](#)
 
 <!-- Replace # placeholders with your LinkedIn and Medium URLs -->
 
