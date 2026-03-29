@@ -189,7 +189,7 @@ This tool is designed as a **pre-screening step before CAQH or CRED submission**
 ## 👤 Author
 
 **Venkat Koneru**
-[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](#) • [Medium](#)
+[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](www.linkedin.com/in/venkata-koneru) • [Medium](#)
 
 <!-- Replace # placeholders with your LinkedIn and Medium URLs -->
 
