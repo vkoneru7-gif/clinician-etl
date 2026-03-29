@@ -47,16 +47,15 @@ AI assistance (Google Gemini) handles ambiguous fields that rules alone can't re
 <!-- Replace the placeholder paths below with your actual screenshot filenames after uploading to GitHub -->
 
 ### Dashboard Overview
-<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/8dbc0a87-3368-4515-9044-be34b25e49ce" />
+<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/118263a3-396a-4ba3-aca5-7c5365a170ba" />
 
-)
 
 ### Data Quality Summary
-<img width="975" height="529" alt="image" src="https://github.com/user-attachments/assets/33170041-9547-4098-86e0-dac2e93ac42a" />
+<img width="975" height="508" alt="image" src="https://github.com/user-attachments/assets/d6b8224f-b440-46e4-a45f-88b1e0280879" />
 
 
 ### Issue Details Table
-<img width="975" height="533" alt="image" src="https://github.com/user-attachments/assets/3a84b3c0-4df3-4e78-af57-ef5021262a37" />
+<img width="975" height="502" alt="image" src="https://github.com/user-attachments/assets/fb00069c-1a60-4335-9171-eb0b4f825a34" />
 
 
 ---
@@ -124,6 +123,21 @@ Running the pipeline on the included `sample_data.csv` (10 records) produces:
 | Issue Rate | 90% |
 | Issue Categories | license_expiry, license_number, specialty, npi |
 
+Validated at scale against a 3,000-record clinician dataset:
+
+| Metric | Value |
+|---|---|
+| Total Records | 3,000 |
+| Issues Found | 3,836 |
+| Clean Records | 154 |
+| Issue Rate | 95% |
+| license_expiry issues | 2,783 |
+| npi issues | 441 |
+| license_number issues | 261 |
+| license_state issues | 180 |
+| specialty issues | 92 |
+| email issues | 79 |
+
 ---
 
 ## 🗺 Roadmap
@@ -139,7 +153,7 @@ Running the pipeline on the included `sample_data.csv` (10 records) produces:
 ## 👤 Author
 
 **Venkat Koneru**
-[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](#) <!-- Replace # with your LinkedIn URL -->
+[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](www.linkedin.com/in/venkata-koneru) <!-- Replace # with your LinkedIn URL -->
 
 ---
 
