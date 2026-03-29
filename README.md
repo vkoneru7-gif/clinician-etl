@@ -1,4 +1,4 @@
-# 🏥 Clinician ETL  AI-Powered Healthcare Data Cleaning
+# 🏥 Clinician ETL — AI-Powered Healthcare Data Cleaning
 
 > A lightweight prototype that solves a real problem in healthcare operations: messy clinician data.
 
@@ -24,7 +24,9 @@ Manual cleaning is slow, error-prone, and doesn't scale.
 - A structured issue report flagging every data quality problem
 - Downloadable outputs in CSV and Excel format
 
-AI assistance (Google Gemini) handles ambiguous fields that rules alone can't resolve — like freeform specialty descriptions or non-standard name formats.
+AI assistance (Google Gemini) handles ambiguous fields that rules alone can't resolve — like freeform specialty descriptions or non-standard name formats. The pipeline uses a **hybrid strategy**: deterministic rules handle ~80% of issues instantly, while the LLM is invoked only for the ambiguous 20% — keeping cost low and results predictable.
+
+> 📝 **Architecture deep-dive:** [How I Built a Healthcare Data Cleaning Pipeline with Python and Gemini AI](#) — *Replace # with your Medium post URL once published*
 
 ---
 
@@ -47,15 +49,15 @@ AI assistance (Google Gemini) handles ambiguous fields that rules alone can't re
 <!-- Replace the placeholder paths below with your actual screenshot filenames after uploading to GitHub -->
 
 ### Dashboard Overview
-<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/118263a3-396a-4ba3-aca5-7c5365a170ba" />
+<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/69490ecb-a12c-4257-920b-c17c93a3912a" />
 
 
 ### Data Quality Summary
-<img width="975" height="508" alt="image" src="https://github.com/user-attachments/assets/d6b8224f-b440-46e4-a45f-88b1e0280879" />
+<img width="975" height="508" alt="image" src="https://github.com/user-attachments/assets/2266225e-05df-472f-b24a-55ff08285f50" />
 
 
 ### Issue Details Table
-<img width="975" height="502" alt="image" src="https://github.com/user-attachments/assets/fb00069c-1a60-4335-9171-eb0b4f825a34" />
+<img width="975" height="502" alt="image" src="https://github.com/user-attachments/assets/d8e151f3-4de9-4f29-926c-0b4699aa4f6f" />
 
 
 ---
@@ -113,17 +115,7 @@ Then open `http://localhost:8501` in your browser.
 
 ## 📊 Sample Results
 
-Running the pipeline on the included `sample_data.csv` (10 records) produces:
-
-| Metric | Value |
-|---|---|
-| Total Records | 10 |
-| Issues Found | 12 |
-| Clean Records | 1 |
-| Issue Rate | 90% |
-| Issue Categories | license_expiry, license_number, specialty, npi |
-
-Validated at scale against a 3,000-record clinician dataset:
+Validated against a 3,000-record real-world clinician dataset:
 
 | Metric | Value |
 |---|---|
@@ -137,6 +129,43 @@ Validated at scale against a 3,000-record clinician dataset:
 | license_state issues | 180 |
 | specialty issues | 92 |
 | email issues | 79 |
+
+> 💡 A 10-record demo file (`sample_data.csv`) is included in the repo. Click **"Use Sample Data"** in the app sidebar to try it instantly — no upload needed.
+
+**Performance:** 3,000 records processed in under 10 seconds (rules-based pipeline, no API calls). AI-assisted cleaning via Gemini API adds ~1–2 seconds per ambiguous record and is applied selectively — only to fields that fail deterministic validation. This hybrid approach keeps cost under $0.01 per 100 records at current Gemini pricing.
+
+---
+
+## ⚙️ Production Considerations
+
+This prototype demonstrates the core pipeline. Below is an honest assessment of what production deployment in a healthcare system would require.
+
+### Error Handling & Recovery
+- The current Gemini API integration processes records sequentially. In production, a mid-batch API failure could leave data in a partially cleaned state. A production build would require idempotent processing — each record gets a status (`pending`, `cleaned`, `failed`) so interrupted jobs can resume without reprocessing or corrupting records already cleaned.
+- Graceful degradation strategy: if the LLM API is unavailable, fall back to rules-only cleaning and flag affected records for manual review rather than failing the entire batch.
+
+### Cost & Performance at Scale
+- Gemini API calls add latency and cost per record. Estimated approach for scale: apply deterministic rules-based cleaning first (handles ~80% of issues), then route only ambiguous records to the LLM (remaining ~20%). This reduces API cost significantly at 10,000+ record volumes.
+- A production benchmark target: < 2 seconds per record end-to-end, < $0.01 per record in API costs.
+
+### Compliance & Security
+- **PII handling:** Clinician name, NPI, email, and phone are isolated to dedicated fields and never logged in plain text in issue reports.
+- **Audit logging:** Every change made by the pipeline is recorded with a before/after value and a timestamp. This is required for credentialing compliance workflows.
+- **Secrets management:** API keys are stored via environment variables (`st.secrets` on Streamlit Cloud), never hardcoded.
+- **Data retention:** Source data is not persisted server-side. Cleaned output is generated in-session and downloaded by the user.
+
+### When NOT to Use This
+- **Sanctions screening:** This tool does not check NPI deactivation status or OIG exclusion lists. Do not use as a substitute for NPPES live lookup or SAM.gov exclusion checks before credentialing.
+- **Multi-source reconciliation:** If the same clinician appears in both CAQH and a payer roster with conflicting specialties, this tool cannot resolve the conflict — it requires a human credentialing reviewer.
+- **State board validation:** License format validation is rule-based. It does not confirm active status with individual state licensing boards.
+- **Restricted or temporary licenses:** The pipeline does not distinguish between full, restricted, or temporary license types.
+
+### What a Production Version Would Add
+- Immutable source data storage + separate cleaned dataset (never overwrite the original)
+- Per-record approval workflow (approve / reject / flag for manual review) before pushing to downstream systems
+- Integration with NPPES API for real-time NPI validation
+- Database-backed audit trail (who ran the pipeline, what changed, when)
+- Role-based access control for credentialing staff vs. administrators
 
 ---
 
@@ -153,7 +182,9 @@ Validated at scale against a 3,000-record clinician dataset:
 ## 👤 Author
 
 **Venkat Koneru**
-[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](www.linkedin.com/in/venkata-koneru) <!-- Replace # with your LinkedIn URL -->
+[GitHub](https://github.com/vkoneru7-gif) • [LinkedIn](www.linkedin.com/in/venkata-koneru) • [Medium](#)
+
+<!-- Replace # placeholders with your LinkedIn and Medium URLs -->
 
 ---
 
