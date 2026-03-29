@@ -47,14 +47,17 @@ AI assistance (Google Gemini) handles ambiguous fields that rules alone can't re
 <!-- Replace the placeholder paths below with your actual screenshot filenames after uploading to GitHub -->
 
 ### Dashboard Overview
-![Dashboard Overview](<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/500d6498-dcd4-4d7a-b958-b22014e141aa" />
+<img width="975" height="535" alt="image" src="https://github.com/user-attachments/assets/8dbc0a87-3368-4515-9044-be34b25e49ce" />
+
 )
 
 ### Data Quality Summary
-![Data Quality Summary](screenshots/quality_summary.png)
+<img width="975" height="529" alt="image" src="https://github.com/user-attachments/assets/33170041-9547-4098-86e0-dac2e93ac42a" />
+
 
 ### Issue Details Table
-![Issue Details](screenshots/issue_details.png)
+<img width="975" height="533" alt="image" src="https://github.com/user-attachments/assets/3a84b3c0-4df3-4e78-af57-ef5021262a37" />
+
 
 ---
 
